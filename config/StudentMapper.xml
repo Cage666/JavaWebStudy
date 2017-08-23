@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cage.student.StudentDAO">
+
+	<insert id="addStu" parameterType="cn.cage.Student">
+		INSERT INTO students
+		(name,qq,major,entrytime,gra_school,id_jnshu,daily_url,desire,bro_jnshu,knowfrom)
+		VALUES
+		(#{name},#{qq},#{major},#{entryTime},#{school},#{jnshuId},#{dailyUrl},#{desire},#{jnshuBro},#{knowFrom})
+	</insert>
+
+	<delete id="delStuById" parameterType="java.lang.Long">
+		DELETE FROM students WHERE
+		id=#{id}
+	</delete>
+	<delete id="delStu" parameterType="cn.cage.Student"></delete>
+
+	<update id="updateStu">
+		UPDATE students SET
+		name=#{stu.name},qq=#{stu.qq},major=#{stu.major},entrytime=#{stu.entryTime},gra_school=#{stu.school},id_jnshu=#{stu.jnshuId}
+		,daily_url=#{stu.dailyUrl},desire=#{stu.desir},bro_jnshu=?#{stu.jnshuBro},knowfrom=#{stu.knowFrom}
+		WHERE id=#{id}
+	</update>
+
+	<select id="queryStuById" resultMap="stuMap">
+		SELECT
+		id,create_at,update_at,name,qq,major,entrytime,gra_school,id_jnshu,daily_url,desire,bro_jnshu,knowfrom
+		FROM students WHERE id=#{id}
+	</select>
+	<select id="queryStuByName" resultMap="stuMap">
+		SELECT
+		id,create_at,update_at,name,qq,major,entrytime,gra_school,id_jnshu,daily_url,desire,bro_jnshu,knowfrom
+		FROM students WHERE name=#{name}
+	</select>
+	<select id="queryStuByJnshu" resultMap="stuMap">
+		SELECT
+		id,create_at,update_at,name,qq,major,entrytime,gra_school,id_jnshu,daily_url,desire,bro_jnshu,knowfrom
+		FROM students WHERE major=#{major} and id_jnshu=#{jnshuId}
+	</select>
+	<select id="queryStu"></select>
+
+	<resultMap type="cn.cage.Student" id="stuMap">
+		<constructor>
+			<arg column="name" javaType="String" name="name" />
+			<arg column="major" javaType="String" name="major" />
+			<arg column="id_jnshu" javaType="int" name="jnshuId" />
+		</constructor>
+		<id property="id" column="id" />
+		<result property="createTime" column="create_at" />
+		<result property="updateTime" column="update_at" />
+		<result property="qq" column="qq" />
+		<!-- 注意！此处需要数据库中获得的结果toString才能转为POJO中的属性值，待修改 -->
+		<result property="entryTime" column="entrytime" />
+		<result property="school" column="gra_school" />
+		<result property="dailyUrl" column="daily_url" />
+		<result property="desire" column="desire" />
+		<result property="jnshuBro" column="bro_jnshu" />
+		<result property="knowFrom" column="knowfrom" />
+	</resultMap>
+
+
+</mapper>
