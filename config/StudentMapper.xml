@@ -18,7 +18,7 @@
 	<update id="updateStu">
 		UPDATE students SET
 		name=#{stu.name},qq=#{stu.qq},major=#{stu.major},entrytime=#{stu.entryTime},gra_school=#{stu.school},id_jnshu=#{stu.jnshuId}
-		,daily_url=#{stu.dailyUrl},desire=#{stu.desir},bro_jnshu=?#{stu.jnshuBro},knowfrom=#{stu.knowFrom}
+		,daily_url=#{stu.dailyUrl},desire=#{stu.desire},bro_jnshu=#{stu.jnshuBro},knowfrom=#{stu.knowFrom}
 		WHERE id=#{id}
 	</update>
 
