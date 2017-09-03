@@ -22,7 +22,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -62,27 +61,35 @@ public class MybatisStuImpl {
 		stu.setMajor("java");
 		stu.setJnshuId(1501);
 		assertEquals("插入失败！", 1, sqlSession.insert("addStu", stu));
+		sqlSession.commit();
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("major", "java");
 		param.put("jnshuId", 1501);
 		Student stu2 = sqlSession.selectOne("queryStuByJnshu", param);
-		System.out.println(stu2.getCreateTime());
 		assertEquals("插入错误，或查询byJnshu出错", stu, stu2);
 	}
 
 	@Test
 	public void testDelStuById() {
-		assertEquals("删除失败！", 1, sqlSession.delete("delStuById", 4));
-		//assertNull("删除错误，或查询byId出错", sqlSession.selectOne("queryStuById", 4));
+		long id = 4;
+		Student student = sqlSession.selectOne("queryStuById", id);
+		System.out.println(student.getEntryTime());
+		assertEquals("删除失败！", 1, sqlSession.delete("delStuById", id));
+		sqlSession.commit();
+		assertNull("删除错误，或查询byId出错", sqlSession.selectOne("queryStuById", id));
 	}
 
 	@Test
-	@Ignore
 	public void testUpdateStu() {
-		Student stu = RandomStudent.getStudent();
+		long id = 5;
+		Student stu = sqlSession.selectOne("queryStuById", id);
 		stu.setDesire("哈哈哈哈哈哈哈哈");
-		assertEquals("更新失败！", 1, sqlSession.update("updateStu", new Object[] { stu, 2 }));
-		assertEquals("更新错误，或查询byId出错", "哈哈哈哈哈哈哈哈", ((Student) sqlSession.selectOne("queryStuById", 2)).getDesire());
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("stu", stu);
+		param.put("id", id);
+		assertEquals("更新失败！", 1, sqlSession.update("updateStu", param));
+		sqlSession.commit();
+		assertEquals("更新错误，或查询byId出错", "哈哈哈哈哈哈哈哈", ((Student) sqlSession.selectOne("queryStuById", id)).getDesire());
 	}
 
 	@Test
