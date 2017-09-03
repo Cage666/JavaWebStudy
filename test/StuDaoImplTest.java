@@ -26,14 +26,14 @@ import org.junit.Test;
  * @author Cage Yang 
  */
 public class StuDaoImplTest {
-	private static StudentDAOImpl stuDao = null;
+	private static StudentDAOSpringImpl stuDao = null;
 	/**
 	 * @description 
 	 * @throws java.lang.Exception 
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		stuDao = new StudentDAOImpl();
+		stuDao = new StudentDAOSpringImpl();
 	}
 	
 	@AfterClass
@@ -42,7 +42,7 @@ public class StuDaoImplTest {
 	}
 
 	/**
-	 * {@link cn.cage.student.StudentDAOImpl#addStu(cn.cage.student.Student)} 的测试方法。
+	 * {@link cn.cage.student.StudentDAOSpringImpl#addStu(cn.cage.student.Student)} 的测试方法。
 	 */
 	@Test
 	public void testAddStu() {
@@ -53,7 +53,7 @@ public class StuDaoImplTest {
 	}
 
 	/**
-	 * {@link cn.cage.student.StudentDAOImpl#delStuById(long)} 的测试方法。
+	 * {@link cn.cage.student.StudentDAOSpringImpl#delStuById(long)} 的测试方法。
 	 */
 	@Test
 	public void testDelStuById() {
@@ -62,7 +62,7 @@ public class StuDaoImplTest {
 	}
 
 	/**
-	 * {@link cn.cage.student.StudentDAOImpl#updateStu(cn.cage.student.Student, long)} 的测试方法。
+	 * {@link cn.cage.student.StudentDAOSpringImpl#updateStu(cn.cage.student.Student, long)} 的测试方法。
 	 */
 	@Test
 	public void testUpdateStu() {
@@ -73,7 +73,7 @@ public class StuDaoImplTest {
 	}
 
 	/**
-	 * {@link cn.cage.student.StudentDAOImpl#queryStuByName(java.lang.String)} 的测试方法。
+	 * {@link cn.cage.student.StudentDAOSpringImpl#queryStuByName(java.lang.String)} 的测试方法。
 	 */
 	@Test
 	public void testQueryStuByName() {
