@@ -6,6 +6,7 @@
  * Modified Date:2017年7月27日
  * Why & What is modified: 
  * 1.添加hashCode和equals方法
+ * 2.将构造方法获取的参数由int改为Interger，否则在Mybatis查询中，会出现“找不到类型为[String,String,Integer]的构造函数”的报错。
  */
 package cn.cage.student;
 
@@ -33,7 +34,7 @@ public class Student implements Comparable<Student> {
 	 * @param major 学习方向
 	 * @param jnshuId 修真院ID
 	 */
-	public Student(String name, String major, int jnshuId) {
+	public Student(String name, String major, Integer jnshuId) {
 		this.name = name;
 		this.major = major;
 		this.jnshuId = jnshuId;

@@ -14,7 +14,7 @@ package cn.cage.student;
  * @author Cage Yang 
  */
 public class DAOFactory {
-	public static StudentDAO get() {
-		return new StudentDAOImpl();
+	public static StudentDAO getDAOImpl() {
+		return new StudentDAOSpringImpl();
 	}
 }
