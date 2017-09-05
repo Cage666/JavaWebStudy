@@ -26,8 +26,8 @@ import cn.cage.student.pojos.Student;
 public class StuDataOperate2 {
 
 	/**
-	 * @description 生成学生数据，然后插入数据库。 1.生成10万条数据，存入集合中 2.将集合中的数据一次性批处理插入到数据库中
-	 *              3.创建5个线程，每个线程将上述操作循环2次
+	 * @description 生成学生数据，然后插入数据库。 1.生成1万条数据，存入集合中 2.将集合中的数据一次性批处理插入到数据库中
+	 *              3.创建10个线程，每个线程执行上述操作10次。
 	 * @param args
 	 */
 	public static void main(String[] args) {
